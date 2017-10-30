@@ -51,7 +51,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     public var locationEstimateMethod: LocationEstimateMethod = .mostRelevantEstimate
     
     let locationManager = LocationManager()
-    var customLocationManager: CucstomLocationManagerable? {
+    public var customLocationManager: CucstomLocationManagerable? {
         didSet {
             if let _ = customLocationManager {
                 locationManager.delegate = nil
