@@ -51,6 +51,17 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     public var locationEstimateMethod: LocationEstimateMethod = .mostRelevantEstimate
     
     let locationManager = LocationManager()
+    var customLocationManager: CucstomLocationManagerProtocol? {
+        didSet {
+            if let _ = customLocationManager {
+                locationManager.delegate = nil
+                customLocationManager?.delegate = self
+            } else {
+                locationManager.delegate = self
+                customLocationManager?.delegate = nil
+            }
+        }
+    }
     ///When set to true, displays an axes node at the start of the scene
     public var showAxesNode = false
     
@@ -498,6 +509,18 @@ extension SceneLocationView: LocationManagerDelegate {
     }
     
     func locationManagerDidUpdateHeading(_ locationManager: LocationManager, heading: CLLocationDirection, accuracy: CLLocationAccuracy) {
+        
+    }
+}
+
+//MARK: CustomLocationManager
+@available(iOS 11.0, *)
+extension SceneLocationView: CustomLocationManagerDelegate {
+    public func locationManagerDidUpdateLocation(_ locationManager: CucstomLocationManagerProtocol, location: CLLocation) {
+        addSceneLocationEstimate(location: location)
+    }
+    
+    public func locationManagerDidUpdateHeading(_ locationManager: CucstomLocationManagerProtocol, heading: CLLocationDirection, accuracy: CLLocationDirection) {
         
     }
 }
