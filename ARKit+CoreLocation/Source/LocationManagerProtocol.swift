@@ -10,12 +10,12 @@ import Foundation
 import CoreLocation
 
 public protocol CustomLocationManagerDelegate: class {
-    func locationManagerDidUpdateLocation(_ locationManager: CucstomLocationManagerProtocol, location: CLLocation)
+    func locationManagerDidUpdateLocation(_ locationManager: CucstomLocationManagerable, location: CLLocation)
     func locationManagerDidUpdateHeading(_
-        locationManager: CucstomLocationManagerProtocol, heading: CLLocationDirection, accuracy: CLLocationDirection)
+        locationManager: CucstomLocationManagerable, heading: CLLocationDirection, accuracy: CLLocationDirection)
 }
 
-public protocol CucstomLocationManagerProtocol {
+public protocol CucstomLocationManagerable {
     
     weak var delegate: CustomLocationManagerDelegate? { set get }
     var currentLocation: CLLocation? { set get }

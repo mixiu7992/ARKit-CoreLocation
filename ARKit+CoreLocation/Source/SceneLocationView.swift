@@ -51,7 +51,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     public var locationEstimateMethod: LocationEstimateMethod = .mostRelevantEstimate
     
     let locationManager = LocationManager()
-    var customLocationManager: CucstomLocationManagerProtocol? {
+    var customLocationManager: CucstomLocationManagerable? {
         didSet {
             if let _ = customLocationManager {
                 locationManager.delegate = nil
@@ -516,11 +516,11 @@ extension SceneLocationView: LocationManagerDelegate {
 //MARK: CustomLocationManager
 @available(iOS 11.0, *)
 extension SceneLocationView: CustomLocationManagerDelegate {
-    public func locationManagerDidUpdateLocation(_ locationManager: CucstomLocationManagerProtocol, location: CLLocation) {
+    public func locationManagerDidUpdateLocation(_ locationManager: CucstomLocationManagerable, location: CLLocation) {
         addSceneLocationEstimate(location: location)
     }
     
-    public func locationManagerDidUpdateHeading(_ locationManager: CucstomLocationManagerProtocol, heading: CLLocationDirection, accuracy: CLLocationDirection) {
+    public func locationManagerDidUpdateHeading(_ locationManager: CucstomLocationManagerable, heading: CLLocationDirection, accuracy: CLLocationDirection) {
         
     }
 }
